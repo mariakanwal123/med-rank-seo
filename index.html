@@ -21,6 +21,50 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(15,23,42,0.97);
 .nav-links a:hover{color:var(--teal);}
 .nav-cta{background:var(--teal);color:#fff;padding:.5rem 1.3rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.88rem;transition:all .2s;}
 .nav-cta:hover{background:var(--teal-dark);}
+/* ── PAGE TABS ── */
+.page-tab{display:none;}
+.page-tab.active-tab{display:block;}
+
+/* ── TAB BAR (below fixed nav) ── */
+.tab-bar{position:fixed;top:64px;width:100%;z-index:999;background:rgba(15,23,42,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(13,148,136,0.2);display:flex;justify-content:center;gap:0;}
+.tab-btn{color:#94a3b8;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;padding:.75rem 2rem;cursor:pointer;position:relative;transition:color .2s;letter-spacing:.02em;}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transition:transform .25s;}
+.tab-btn:hover{color:#fff;}
+.tab-btn.active{color:var(--teal);}
+.tab-btn.active::after{transform:scaleX(1);}
+
+/* ── CONTACT PAGE ── */
+.contact-page{min-height:80vh;padding:8rem 2rem 5rem;background:var(--cream);}
+.contact-page .container{max-width:900px;}
+.contact-hero-tag{color:var(--teal);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem;}
+.contact-hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--navy);line-height:1.2;margin-bottom:1rem;}
+.contact-hero-sub{color:var(--gray);font-size:1rem;line-height:1.75;max-width:600px;margin-bottom:3rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+.contact-form-box{background:#fff;border-radius:20px;padding:2.5rem;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.contact-form-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:1.5rem;}
+.cf-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem;}
+.cf-label{color:var(--slate);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.cf-input{background:var(--light);border:1.5px solid #e2e8f0;color:var(--navy);padding:.75rem 1rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.92rem;outline:none;transition:border-color .2s;width:100%;}
+.cf-input:focus{border-color:var(--teal);}
+.cf-textarea{min-height:130px;resize:vertical;}
+.cf-submit{background:var(--teal);color:#fff;border:none;width:100%;padding:.9rem;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s;margin-top:.4rem;}
+.cf-submit:hover{background:var(--teal-dark);transform:translateY(-1px);}
+.cf-success{display:none;background:rgba(13,148,136,.1);border:1px solid rgba(13,148,136,.3);border-radius:12px;padding:1rem 1.2rem;margin-top:1rem;color:var(--teal-dark);font-size:.9rem;text-align:center;}
+.contact-info-col{display:flex;flex-direction:column;gap:1.5rem;}
+.contact-info-card{background:#fff;border-radius:16px;padding:1.8rem;box-shadow:0 4px 20px rgba(0,0,0,.06);display:flex;gap:1rem;align-items:flex-start;}
+.ci-icon{font-size:1.8rem;flex-shrink:0;}
+.ci-content strong{display:block;font-size:.95rem;color:var(--navy);margin-bottom:.3rem;}
+.ci-content a,.ci-content p{color:var(--gray);font-size:.88rem;text-decoration:none;line-height:1.65;}
+.ci-content a:hover{color:var(--teal);}
+.contact-services-box{background:linear-gradient(135deg,var(--navy),#134e4a);border-radius:16px;padding:1.8rem;}
+.contact-services-box h4{font-family:'Playfair Display',serif;color:#fff;font-size:1.1rem;margin-bottom:1.1rem;}
+.cs-item{display:flex;gap:.7rem;align-items:center;color:#94a3b8;font-size:.88rem;margin-bottom:.65rem;}
+.cs-item::before{content:'\2713';color:var(--teal);font-weight:800;flex-shrink:0;}
+@media(max-width:768px){
+  .contact-grid{grid-template-columns:1fr;}
+  .tab-btn{padding:.7rem 1.2rem;font-size:.8rem;}
+}
+
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,var(--navy) 0%,#134e4a 60%,#0d9488 100%);position:relative;overflow:hidden;padding:8rem 2rem 4rem;}
@@ -329,16 +373,26 @@ footer{background:var(--navy);color:#94a3b8;padding:3rem 2rem 2rem;}
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Med<span>Rank</span>SEO</a>
+  <a href="#" class="nav-logo" onclick="showTab('home');return false;">Med<span>Rank</span>SEO</a>
   <ul class="nav-links">
-    <li><a href="#blogs">Blogs</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#takeaways">Key Takeaways</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#" onclick="showTab('home');return false;">Home</a></li>
+    <li><a href="#" onclick="showTab('blogs');return false;">Blogs</a></li>
+    <li><a href="#" onclick="showTab('about');return false;">About</a></li>
+    <li><a href="#" onclick="showTab('contact');return false;">Contact</a></li>
   </ul>
-  <a href="mailto:medrankseo@gmail.com" class="nav-cta">Free Audit</a>
+  <a href="#" onclick="showTab('contact');return false;" class="nav-cta">Free Audit</a>
 </nav>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" id="tab-home" onclick="showTab('home')">&#127968; Home</button>
+  <button class="tab-btn" id="tab-blogs" onclick="showTab('blogs')">&#128218; Blogs</button>
+  <button class="tab-btn" id="tab-about" onclick="showTab('about')">&#127970; About</button>
+  <button class="tab-btn" id="tab-contact" onclick="showTab('contact')">&#9993;&#65039; Contact</button>
+</div>
+
+<!-- HOME TAB -->
+<div class="page-tab active-tab" id="page-home">
 
 <!-- HERO -->
 <section class="hero">
@@ -392,8 +446,13 @@ footer{background:var(--navy);color:#94a3b8;padding:3rem 2rem 2rem;}
   </div>
 </section>
 
+</div><!-- /page-home -->
+
+<!-- BLOGS TAB -->
+<div class="page-tab" id="page-blogs">
+
 <!-- BLOGS -->
-<section class="blog-section" id="blogs">
+<section class="blog-section" id="blogs" style="padding-top:8rem;">
   <div class="container">
     <p class="section-tag">Expert Blog Library — 2026 Edition</p>
     <h2 class="section-title">20+ Deep-Dive Health SEO Guides</h2>
@@ -411,8 +470,13 @@ footer{background:var(--navy);color:#94a3b8;padding:3rem 2rem 2rem;}
   </div>
 </section>
 
+</div><!-- /page-blogs -->
+
+<!-- ABOUT TAB -->
+<div class="page-tab" id="page-about">
+
 <!-- ABOUT -->
-<section class="about-section" id="about">
+<section class="about-section" id="about" style="padding-top:8rem;">
   <div class="container">
     <div class="about-grid">
       <div>
@@ -496,6 +560,91 @@ footer{background:var(--navy);color:#94a3b8;padding:3rem 2rem 2rem;}
     </div>
   </div>
 </section>
+
+</div><!-- /page-about -->
+
+<!-- CONTACT TAB -->
+<div class="page-tab" id="page-contact">
+<div class="contact-page">
+  <div class="container">
+    <p class="contact-hero-tag">Get In Touch &#8212; 2026</p>
+    <h1 class="contact-hero-title">Let&#39;s Grow Your Health<br>Search Visibility</h1>
+    <p class="contact-hero-sub">Ready to dominate Google&#39;s AI Overviews in 2026? Reach out for a free audit, a strategy call, or just to ask a question. We respond within 24 hours.</p>
+    <div class="contact-grid">
+      <div class="contact-form-box">
+        <h3>Send Us a Message</h3>
+        <div class="cf-field">
+          <label class="cf-label">Your Name *</label>
+          <input type="text" class="cf-input" id="cf-name" placeholder="Dr. Jane Smith">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Email Address *</label>
+          <input type="email" class="cf-input" id="cf-email" placeholder="jane@clinic.com">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Organisation / Website</label>
+          <input type="text" class="cf-input" id="cf-org" placeholder="City Health Clinic">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">How Can We Help?</label>
+          <select class="cf-input" id="cf-service">
+            <option value="">Select a service&#8230;</option>
+            <option>AI Overview Optimisation</option>
+            <option>E-E-A-T Audit &amp; Rebuild</option>
+            <option>Medical Schema Markup</option>
+            <option>Local Health SEO</option>
+            <option>Content Strategy &amp; YMYL</option>
+            <option>Free SEO Audit</option>
+            <option>Other / General Enquiry</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Message *</label>
+          <textarea class="cf-input cf-textarea" id="cf-msg" placeholder="Tell us about your health website, current challenges, and goals for 2026&#8230;"></textarea>
+        </div>
+        <button class="cf-submit" onclick="submitContactForm()">&#128640; Send Message</button>
+        <div class="cf-success" id="cf-success">&#9989; <strong>Message sent!</strong> We&#39;ll be in touch within 24 hours.</div>
+      </div>
+      <div class="contact-info-col">
+        <div class="contact-info-card">
+          <div class="ci-icon">&#9993;&#65039;</div>
+          <div class="ci-content">
+            <strong>Email Us Directly</strong>
+            <a href="mailto:medrankseo@gmail.com">medrankseo@gmail.com</a>
+            <p style="margin-top:.3rem;">We reply within 24 hours &#8212; usually much faster.</p>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="ci-icon">&#127919;</div>
+          <div class="ci-content">
+            <strong>Free 2026 SEO Audit</strong>
+            <p>Get a complimentary AI Overview visibility review, E-E-A-T gap analysis, and technical health check &#8212; no strings attached.</p>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <div class="ci-icon">&#9203;</div>
+          <div class="ci-content">
+            <strong>Response Time</strong>
+            <p>All enquiries answered within 24 business hours. Urgent? Mark your email &#8220;URGENT&#8221; and we prioritise same-day.</p>
+          </div>
+        </div>
+        <div class="contact-services-box">
+          <h4>What We Can Help With</h4>
+          <div class="cs-item">AI Overview citation optimisation</div>
+          <div class="cs-item">E-E-A-T audit &amp; authority rebuild</div>
+          <div class="cs-item">Medical schema markup (2026 spec)</div>
+          <div class="cs-item">YMYL content strategy &amp; review</div>
+          <div class="cs-item">Local health SEO for clinics</div>
+          <div class="cs-item">Hospital &amp; multi-location SEO</div>
+          <div class="cs-item">Telehealth &amp; pharmacy SEO</div>
+          <div class="cs-item">AI visibility reporting &amp; tracking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /page-contact -->
+
 
 <!-- FOOTER -->
 <footer>
@@ -1139,6 +1288,34 @@ document.addEventListener('DOMContentLoaded', () => {
     renderAllCards([...BLOGS, ...publishedBlogs, ...codepublishedBlogs]);
   }
 });
+// ═══ TAB NAVIGATION ═══
+function showTab(tab) {
+  document.querySelectorAll('.page-tab').forEach(el => el.classList.remove('active-tab'));
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('page-' + tab).classList.add('active-tab');
+  document.getElementById('tab-' + tab).classList.add('active');
+  window.scrollTo(0, 0);
+  if (tab === 'blogs') {
+    renderAllCards([...BLOGS, ...publishedBlogs, ...codepublishedBlogs]);
+  }
+}
+
+// ═══ CONTACT FORM ═══
+function submitContactForm() {
+  var name = document.getElementById('cf-name').value.trim();
+  var email = document.getElementById('cf-email').value.trim();
+  var msg = document.getElementById('cf-msg').value.trim();
+  if (!name || !email || !msg) { alert('Please fill in your name, email, and message.'); return; }
+  var service = document.getElementById('cf-service').value;
+  var org = document.getElementById('cf-org').value.trim();
+  var subject = encodeURIComponent('MedRankSEO Enquiry from ' + name);
+  var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + (org ? '\nOrganisation: ' + org : '') + (service ? '\nService: ' + service : '') + '\n\nMessage:\n' + msg);
+  window.location.href = 'mailto:medrankseo@gmail.com?subject=' + subject + '&body=' + body;
+  document.getElementById('cf-success').style.display = 'block';
+  ['cf-name','cf-email','cf-org','cf-msg'].forEach(function(id){ document.getElementById(id).value = ''; });
+  document.getElementById('cf-service').selectedIndex = 0;
+}
+
 </script>
 </body>
 </html>
